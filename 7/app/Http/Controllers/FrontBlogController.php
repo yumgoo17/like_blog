@@ -31,6 +31,8 @@ class FrontBlogController extends Controller
 
         // ブログ記事一覧を取得
         $list = $this->article->getArticleList(self::NUM_PER_PAGE, $input);
+        // ページネーションリンクにクエリストリングを付け加える
+        $list->appends($input);
         // 月別アーカイブの対象月リストを取得
         $month_list = $this->article->getMonthList();
         return view('front_blog.index', compact('list', 'month_list'));
